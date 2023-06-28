@@ -1,6 +1,6 @@
 using Mails.Data;
 using Mails.Business;
-using Mails.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

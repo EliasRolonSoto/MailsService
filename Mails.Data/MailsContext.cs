@@ -11,7 +11,7 @@ namespace Mails.Data
     public class MailsContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Mails.Entities.Mail> Mails { get; set; }
+        public DbSet<Mail> Mails { get; set; }
 
         //public MailsContext(DbContextOptions<MailContext> options) : base(options)
         //{

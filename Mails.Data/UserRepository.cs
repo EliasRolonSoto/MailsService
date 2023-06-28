@@ -1,4 +1,5 @@
 ﻿using Mails.Data;
+using Mails.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,14 @@ namespace Mails.Data
         {
             _context = context;
         }
-
+        public void NewUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+        public List<User> GetAll()
+        {
+            return _context.Users.ToList();
+        }
     }
 }
