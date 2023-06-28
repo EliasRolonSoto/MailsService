@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mails.WebAPI.Controllers
 {
-    //cambios
+    
     [Route("api/[controller]")]
     [ApiController]
     public class MailsController : ControllerBase
