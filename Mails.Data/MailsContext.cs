@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Mails.Data
 {
-    public class MailContext : DbContext
+    public class MailsContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Mails.Entities.Mail> Mails { get; set; }
 
-        //public MailContext(DbContextOptions<MailContext> options) : base(options)
+        //public MailsContext(DbContextOptions<MailContext> options) : base(options)
         //{
         //}
 

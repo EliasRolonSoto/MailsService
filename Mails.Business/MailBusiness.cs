@@ -1,4 +1,4 @@
-﻿using Mail.Data;
+﻿using Mails.Data;
 using Mails.Entities;
 using Microsoft.Identity.Client;
 
@@ -13,17 +13,17 @@ namespace Mails.Business
             _mailRepository = mailRepository;
         }
 
-        public Response<Mails.Entities.Mail> GetInbox(Search search)
+        public Response<Mail> GetInbox(Search search)
         {
             return _mailRepository.GetInbox(search);
         }
 
-        public Response<Mails.Entities.Mail> GetOutbox(Search search)
+        public Response<Mail> GetOutbox(Search search)
         {
             return _mailRepository.GetOutbox(search);
         }
 
-        public void NewMail(Mails.Entities.Mail mail)
+        public void NewMail(Mail mail)
         {
             _mailRepository.NewMail(mail);
         }

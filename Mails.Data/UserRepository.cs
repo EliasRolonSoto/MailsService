@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mail.Data
+namespace Mails.Data
 {
     public class UserRepository
     {
-        private MailContext _context; 
-        public UserRepository(MailContext context) 
+        private MailsContext _context; 
+        public UserRepository(MailsContext context) 
         {
             _context = context;
         }

@@ -1,4 +1,4 @@
-using Mail.Data;
+using Mails.Data;
 using Mails.Business;
 using Mails.Data;
 
@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MailContext>();
+builder.Services.AddDbContext<MailsContext>();
 builder.Services.AddTransient<UserRepository>();
 builder.Services.AddTransient<UserBusiness>();
 builder.Services.AddTransient<MailRepository>();

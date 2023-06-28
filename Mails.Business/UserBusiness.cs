@@ -1,4 +1,4 @@
-﻿using Mail.Data;
+﻿using Mails.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Mail.Data;
+﻿using Mails.Data;
 using Mails.Business;
 using Mails.Entities;
 using Microsoft.AspNetCore.Http;
@@ -18,18 +18,18 @@ namespace Mails.WebAPI.Controllers
         }
 
         [HttpPost("/InBox")]
-        public Response<Mails.Entities.Mail> GetInBox(Search search) 
+        public Response<Mail> GetInBox(Search search) 
         {
             return _mailBusiness.GetInbox(search);
         }
         [HttpPost("/OutBox")]
-        public Response<Mails.Entities.Mail> GetOutBox(Search search)
+        public Response<Mail> GetOutBox(Search search)
         {
             return _mailBusiness.GetOutbox(search);
         }
 
         [HttpPost]
-        public void NewMail(Mails.Entities.Mail mail)
+        public void NewMail(Mail mail)
         {
             _mailBusiness.NewMail(mail);
         }
