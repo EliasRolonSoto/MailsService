@@ -12,7 +12,7 @@ namespace Mails.Winform
 {
     public partial class MenuForm : Form
     {
-        private readonly Uri _baseAddress = new Uri("https://localhost:7004/api");
+        private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
         private readonly string _email;
         public MenuForm(string email)

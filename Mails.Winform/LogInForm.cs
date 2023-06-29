@@ -8,7 +8,7 @@ namespace Mails.Winform
 {
     public partial class LogInForm : Form
     {
-        private readonly Uri _baseAddress = new Uri("https://localhost:7007/");
+        private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
         public LogInForm()
         {
@@ -32,14 +32,17 @@ namespace Mails.Winform
                 {
                     Email = txtEmail.Text,
                     PasswordHash = txtPassword.Text
+                    //PasswordHash = hashedPassword,
                 };
 
                 string data = JsonConvert.SerializeObject(loginRequest);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = _client.PostAsync($"{_client.BaseAddress}/users/login", content).Result;
-
-                if (response.IsSuccessStatusCode)
+                var resultResponse = response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Equals("true"))
                 {
+
+
                     MenuForm form = new MenuForm(txtEmail.Text);
                     form.Show();
                 }
