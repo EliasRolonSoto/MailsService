@@ -8,7 +8,7 @@ namespace Mails.Winform
 {
     public partial class LogInForm : Form
     {
-        private readonly Uri _baseAddress = new Uri("https://localhost:7004/api");
+        private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
         public LogInForm()
         {
@@ -57,6 +57,12 @@ namespace Mails.Winform
         private void LogInForm_Load(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            var form = new SignUpForm();
+            form.ShowDialog();
         }
     }
 }

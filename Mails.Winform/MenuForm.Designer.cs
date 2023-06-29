@@ -177,6 +177,7 @@
             Controls.Add(btnInBox);
             Name = "MenuForm";
             Text = "MenuForm";
+            Load += MenuForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMails).EndInit();
             ResumeLayout(false);
             PerformLayout();

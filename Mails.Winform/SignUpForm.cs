@@ -15,7 +15,7 @@ namespace Mails.Winform
 {
     public partial class SignUpForm : Form
     {
-        private readonly Uri _baseAddress = new Uri("https://localhost:7004/api");
+        private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
         public SignUpForm()
         {
@@ -35,9 +35,9 @@ namespace Mails.Winform
         }
         private void SignUp()
         {
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPassword.Text) && !string.IsNullOrEmpty(txtName.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text) || !string.IsNullOrEmpty(txtPassword.Text) || !string.IsNullOrEmpty(txtName.Text))
             {
-                var passwordHasher = new PasswordHasher<User>();
+                var passwordHasher = new PasswordHasher<string>();
                
 
                 var user = new User()
@@ -45,7 +45,7 @@ namespace Mails.Winform
                     Email = txtEmail.Text,
                     Name = txtName.Text,
                 };
-                string hashedPassword = passwordHasher.HashPassword(user, txtPassword.Text);
+                string hashedPassword = passwordHasher.HashPassword(null!, txtPassword.Text);
                 user.PasswordHash = hashedPassword;
                 string data = JsonConvert.SerializeObject(user);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -63,7 +63,7 @@ namespace Mails.Winform
             }
             else
             {
-                MessageBox.Show("Please fill all required fields!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please fill all required fields!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

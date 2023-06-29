@@ -125,6 +125,7 @@
             Controls.Add(btnSend);
             Name = "NewMailForm";
             Text = "NewMailForm";
+            Load += NewMailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
