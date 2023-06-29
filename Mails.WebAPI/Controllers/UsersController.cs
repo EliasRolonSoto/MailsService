@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mails.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace Mails.WebAPI.Controllers
         {
             return _userBusiness.GetAll();
         }
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public bool LogIn(LogInRequest loginRequest)
         {
             return _userBusiness.LogIn(loginRequest);

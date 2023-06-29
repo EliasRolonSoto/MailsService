@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mails.WebAPI.Controllers
 {
     
-    [Route("api/[controller]")]
+    [Route("api/mails")]
     [ApiController]
     public class MailsController : ControllerBase
     {
@@ -17,12 +17,12 @@ namespace Mails.WebAPI.Controllers
             _mailBusiness = mail;
         }
 
-        [HttpPost("/InBox")]
+        [HttpPost("InBox")]
         public Response<Mail> GetInBox(Search search) 
         {
             return _mailBusiness.GetInbox(search);
         }
-        [HttpPost("/OutBox")]
+        [HttpPost("OutBox")]
         public Response<Mail> GetOutBox(Search search)
         {
             return _mailBusiness.GetOutbox(search);
@@ -33,12 +33,12 @@ namespace Mails.WebAPI.Controllers
         {
             _mailBusiness.NewMail(mail);
         }
-        [HttpPost("/inbox/{email}")]
+        [HttpPost("inbox/{email}")]
         public Response<Mail> SearchInbox(Search search, string email)
         {
             return _mailBusiness.SearchInbox(search, email);
         }
-        [HttpPost("/outbox/{email}")]
+        [HttpPost("outbox/{email}")]
         public Response<Mail> SearchOutbox(Search search, string email)
         {
             return _mailBusiness.SearchOutbox(search, email);

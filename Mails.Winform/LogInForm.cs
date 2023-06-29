@@ -8,7 +8,7 @@ namespace Mails.Winform
 {
     public partial class LogInForm : Form
     {
-        private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
+        private readonly Uri _baseAddress = new Uri("https://localhost:7007/");
         private readonly HttpClient _client;
         public LogInForm()
         {
@@ -25,13 +25,13 @@ namespace Mails.Winform
         {
             if (!string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPassword.Text))
             {
-                var passwordHasher = new PasswordHasher<string>();
-                string hashedPassword = passwordHasher.HashPassword(null!, txtPassword.Text);
+                //var passwordHasher = new PasswordHasher<string>();
+                //string hashedPassword = passwordHasher.HashPassword(null!, txtPassword.Text);
 
                 var loginRequest = new LogInRequest()
                 {
                     Email = txtEmail.Text,
-                    PasswordHash = hashedPassword
+                    PasswordHash = txtPassword.Text
                 };
 
                 string data = JsonConvert.SerializeObject(loginRequest);
