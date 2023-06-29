@@ -15,12 +15,12 @@ namespace Mails.Business
 
         public Response<Mail> GetInbox(Search search)
         {
-            return _mailRepository.GetInbox(search);
+            return _mailRepository.GetInboxPaged(search);
         }
 
         public Response<Mail> GetOutbox(Search search)
         {
-            return _mailRepository.GetOutbox(search);
+            return _mailRepository.GetOutboxPaged(search);
         }
 
         public void NewMail(Mail mail)

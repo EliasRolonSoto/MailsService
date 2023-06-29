@@ -25,5 +25,9 @@ namespace Mails.Business
         {
             return _userRepository.GetAll();
         }
+        public bool LogIn (LogInRequest request)
+        {
+            return _userRepository.LogIn(request);
+        }
     }
 }

@@ -60,5 +60,11 @@ namespace Mails.Data
             _context.Mails.Add(mail);
             _context.SaveChanges();
         }
+
+        public Response<Mail> SearchInbox(Search search, string email)
+        {
+            var skipRows = ((search.PageIndex - 1) * search.PageSize);
+            var inBox 
+        }
     }
 }

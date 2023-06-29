@@ -23,5 +23,11 @@ namespace Mails.WebAPI.Controllers
         {
             return _userBusiness.GetAll();
         }
+        [HttpPost("/login")]
+        public bool LogIn(LogInRequest loginRequest)
+        {
+            return _userBusiness.LogIn(loginRequest);
+        }
+
     }
 }
