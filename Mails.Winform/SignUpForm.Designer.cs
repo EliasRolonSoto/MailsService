@@ -65,6 +65,7 @@
             btnSignUp.TabIndex = 2;
             btnSignUp.Text = "SignUp";
             btnSignUp.UseVisualStyleBackColor = true;
+            btnSignUp.Click += btnSignUp_Click;
             // 
             // txtPassword
             // 
@@ -123,6 +124,7 @@
             Controls.Add(lblSignUp);
             Name = "SignUpForm";
             Text = "SignUpForm";
+            Load += SignUpForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

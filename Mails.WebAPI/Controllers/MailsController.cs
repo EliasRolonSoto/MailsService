@@ -33,6 +33,16 @@ namespace Mails.WebAPI.Controllers
         {
             _mailBusiness.NewMail(mail);
         }
+        [HttpPost("/inbox/{email}")]
+        public Response<Mail> SearchInbox(Search search, string email)
+        {
+            return _mailBusiness.SearchInbox(search, email);
+        }
+        [HttpPost("/outbox/{email}")]
+        public Response<Mail> SearchOutbox(Search search, string email)
+        {
+            return _mailBusiness.SearchOutbox(search, email);
+        }
 
     }
 }

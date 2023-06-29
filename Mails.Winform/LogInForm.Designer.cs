@@ -61,6 +61,7 @@
             btnLogIn.TabIndex = 2;
             btnLogIn.Text = "LogIn";
             btnLogIn.UseVisualStyleBackColor = true;
+            btnLogIn.Click += btnLogIn_Click;
             // 
             // lblLogIn
             // 
@@ -114,6 +115,7 @@
             Controls.Add(txtEmail);
             Name = "LogInForm";
             Text = "Form1";
+            Load += LogInForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

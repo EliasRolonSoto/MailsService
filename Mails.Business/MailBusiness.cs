@@ -27,12 +27,15 @@ namespace Mails.Business
         {
             _mailRepository.NewMail(mail);
         }
+        public Response<Mail> SearchInbox(Search search, string email)
+        {
+            return _mailRepository.SearchInbox(search, email);
 
+        }
+        public Response<Mail> SearchOutbox(Search search, string email)
+        {
+            return _mailRepository.SearchOutbox(search, email);
 
-        //public MailBusiness()
-        //{
-        //    _mailRepository = new MailRepository();
-
-        //}
+        }
     }
 }

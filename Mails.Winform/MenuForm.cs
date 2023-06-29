@@ -12,9 +12,11 @@ namespace Mails.Winform
 {
     public partial class MenuForm : Form
     {
-        public MenuForm()
+        private readonly string _email;
+        public MenuForm(string email)
         {
             InitializeComponent();
+            _email = email;
         }
 
 
