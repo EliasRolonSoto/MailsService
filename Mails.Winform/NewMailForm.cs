@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mails.Entities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +27,39 @@ namespace Mails.Winform
 
         private void NewMailForm_Load(object sender, EventArgs e)
         {
+
+        }
+        private void SendMail()
+        {
+            if (!string.IsNullOrEmpty(txtTo.Text))
+            {
+                var mail = new Mail()
+                {
+                    Subject = txtSubject.Text,
+                    Body = txtBody.Text,
+                    SenderEmail = _email,
+                    Receiver = txtTo.Text,
+                    Date = DateTime.Now,
+                };
+                var jsonMail = JsonConvert.SerializeObject(mail);
+                StringContent content = new StringContent(jsonMail, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/mails", content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Mail successfully sent!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Couldn't send mail");
+                }
+            }
+            
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            SendMail();
 
         }
     }

@@ -47,6 +47,7 @@
             btnSend.TabIndex = 0;
             btnSend.Text = "Send";
             btnSend.UseVisualStyleBackColor = true;
+            btnSend.Click += btnSend_Click;
             // 
             // txtTo
             // 

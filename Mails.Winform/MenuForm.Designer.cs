@@ -52,6 +52,7 @@
             btnInBox.TabIndex = 0;
             btnInBox.Text = "InBox";
             btnInBox.UseVisualStyleBackColor = true;
+            btnInBox.Click += btnInBox_Click;
             // 
             // lblBox
             // 
@@ -89,6 +90,7 @@
             btnSent.TabIndex = 8;
             btnSent.Text = "Sent";
             btnSent.UseVisualStyleBackColor = true;
+            btnSent.Click += btnSent_Click;
             // 
             // btnNewMail
             // 
@@ -98,6 +100,7 @@
             btnNewMail.TabIndex = 9;
             btnNewMail.Text = "New Mail";
             btnNewMail.UseVisualStyleBackColor = true;
+            btnNewMail.Click += btnNewMail_Click;
             // 
             // lblResult
             // 
@@ -109,19 +112,20 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(207, 102);
+            txtSearch.Location = new Point(207, 101);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(212, 23);
+            txtSearch.Size = new Size(533, 23);
             txtSearch.TabIndex = 11;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(446, 101);
+            btnSearch.Location = new Point(746, 101);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(85, 23);
             btnSearch.TabIndex = 12;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtPage
             // 
@@ -149,6 +153,7 @@
             btnNext.TabIndex = 17;
             btnNext.Text = "Next->";
             btnNext.UseVisualStyleBackColor = true;
+            btnNext.Click += btnNext_Click;
             // 
             // btnPrevious
             // 
@@ -158,6 +163,7 @@
             btnPrevious.TabIndex = 18;
             btnPrevious.Text = "<-Prev";
             btnPrevious.UseVisualStyleBackColor = true;
+            btnPrevious.Click += btnPrevious_Click;
             // 
             // MenuForm
             // 

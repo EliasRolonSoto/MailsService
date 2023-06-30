@@ -22,7 +22,7 @@ namespace Mails.Data
         private List<Mail> GetOutbox(string email)
         {
             var result = from m in _context.Mails
-                         where m.Receiver.Contains(email)
+                         where m.SenderEmail.Contains(email)
                          select m;
             return result.ToList();
         }

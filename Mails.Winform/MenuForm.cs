@@ -38,17 +38,7 @@ namespace Mails.Winform
         {
             cbItemsPerPage.SelectedIndex = 1;
             txtPage.Text = "1";
-
-            var loginRequest = new Search()
-            {
-                TextToSearch = _email,
-                PageIndex = int.Parse(txtPage.Text),
-
-            };
-
-            string data = JsonConvert.SerializeObject(loginRequest);
-            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = _client.PostAsync($"{_client.BaseAddress}/users/login", content).Result;
+            dgvMails.RowHeadersVisible = false;
         }
 
         private void txtPage_TextChanged(object sender, EventArgs e)
@@ -80,7 +70,7 @@ namespace Mails.Winform
         }
         private void LoadDataGrid(EmailData data, string textToSearch)
         {
-            string mailData;
+            string mailData = "";
             Search search = new Search()
             {
                 PageIndex = _currentPage,
@@ -91,7 +81,7 @@ namespace Mails.Winform
             string json = JsonConvert.SerializeObject(search);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            if(data == EmailData.Inbox)
+            if (data == EmailData.Inbox)
             {
                 mailData = "inbox";
             }
@@ -100,14 +90,58 @@ namespace Mails.Winform
                 mailData = "outbox";
             }
 
-            HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + $"/emails/{_email}", content).Result;
-            var result = response.Content.ReadAsStringAsync().Result;
+            HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + $"/mails/{mailData}/{_email}", content).Result;
+            var jsonToDeserialize = response.Content.ReadAsStringAsync().Result;
+
+            var result = JsonConvert.DeserializeObject<Response<Mail>>(jsonToDeserialize);
+            dgvMails.DataSource = result.Items;
         }
 
         private void cbItemsPerPage_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             _currentItemsPerPage = int.Parse(cbItemsPerPage.SelectedItem.ToString()!);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (_currentPage > 1)
+            {
+                _currentPage--;
+                txtPage.Text = _currentPage.ToString();
+                DataGridLoadChecker(_textToSearch);
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _currentPage++;
+            txtPage.Text = _currentPage.ToString();
+            DataGridLoadChecker(_textToSearch);
+        }
+
+        private void btnInBox_Click(object sender, EventArgs e)
+        {
+            lblBox.Text = "InBox";
+            DataGridLoadChecker(_textToSearch);
+        }
+
+        private void btnSent_Click(object sender, EventArgs e)
+        {
+            lblBox.Text = "OutBox";
+            DataGridLoadChecker(_textToSearch);
+        }
+
+        private void btnNewMail_Click(object sender, EventArgs e)
+        {
+            NewMailForm form = new NewMailForm(_email);
+            form.ShowDialog();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            _textToSearch = txtSearch.Text;
+            DataGridLoadChecker(_textToSearch);
         }
     }
 }
