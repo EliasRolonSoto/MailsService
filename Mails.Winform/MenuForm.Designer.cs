@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnInBox = new Button();
-            lblInbox = new Label();
+            lblBox = new Label();
             dgvMails = new DataGridView();
             lblMenu = new Label();
             btnSent = new Button();
@@ -53,15 +53,15 @@
             btnInBox.Text = "InBox";
             btnInBox.UseVisualStyleBackColor = true;
             // 
-            // lblInbox
+            // lblBox
             // 
-            lblInbox.AutoSize = true;
-            lblInbox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblInbox.Location = new Point(23, 18);
-            lblInbox.Name = "lblInbox";
-            lblInbox.Size = new Size(73, 32);
-            lblInbox.TabIndex = 1;
-            lblInbox.Text = "InBox";
+            lblBox.AutoSize = true;
+            lblBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblBox.Location = new Point(23, 18);
+            lblBox.Name = "lblBox";
+            lblBox.Size = new Size(73, 32);
+            lblBox.TabIndex = 1;
+            lblBox.Text = "InBox";
             // 
             // dgvMails
             // 
@@ -129,6 +129,7 @@
             txtPage.Name = "txtPage";
             txtPage.Size = new Size(56, 23);
             txtPage.TabIndex = 14;
+            txtPage.TextChanged += txtPage_TextChanged;
             // 
             // cbItemsPerPage
             // 
@@ -138,6 +139,7 @@
             cbItemsPerPage.Name = "cbItemsPerPage";
             cbItemsPerPage.Size = new Size(39, 23);
             cbItemsPerPage.TabIndex = 15;
+            cbItemsPerPage.SelectedIndexChanged += cbItemsPerPage_SelectedIndexChanged;
             // 
             // btnNext
             // 
@@ -173,7 +175,7 @@
             Controls.Add(btnSent);
             Controls.Add(lblMenu);
             Controls.Add(dgvMails);
-            Controls.Add(lblInbox);
+            Controls.Add(lblBox);
             Controls.Add(btnInBox);
             Name = "MenuForm";
             Text = "MenuForm";
@@ -186,7 +188,7 @@
         #endregion
 
         private Button btnInBox;
-        private Label lblInbox;
+        private Label lblBox;
         private DataGridView dgvMails;
         private Label lblMenu;
         private Button btnSent;

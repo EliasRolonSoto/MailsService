@@ -39,10 +39,8 @@ namespace Mails.Winform
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = _client.PostAsync($"{_client.BaseAddress}/users/login", content).Result;
                 var resultResponse = response.Content.ReadAsStringAsync();
-                if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Equals("true"))
+                if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
                 {
-
-
                     MenuForm form = new MenuForm(txtEmail.Text);
                     form.Show();
                 }

@@ -17,16 +17,16 @@ namespace Mails.WebAPI.Controllers
             _mailBusiness = mail;
         }
 
-        [HttpPost("InBox")]
-        public Response<Mail> GetInBox(Search search) 
-        {
-            return _mailBusiness.GetInbox(search);
-        }
-        [HttpPost("OutBox")]
-        public Response<Mail> GetOutBox(Search search)
-        {
-            return _mailBusiness.GetOutbox(search);
-        }
+        //[HttpPost("InBox")]
+        //public Response<Mail> GetInBox(Search search) 
+        //{
+        //    return _mailBusiness.GetInbox(search);
+        //}
+        //[HttpPost("OutBox")]
+        //public Response<Mail> GetOutBox(Search search)
+        //{
+        //    return _mailBusiness.GetOutbox(search);
+        //}
 
         [HttpPost]
         public void NewMail(Mail mail)
