@@ -36,6 +36,10 @@ namespace Mails.Entities
 
             }
         }
+        public string ResultMessage()
+        {
+            return $"Mails {PageIndex * PageSize} - {PageIndex * PageSize + PageSize}";
+        }
 
         public Search()
         {

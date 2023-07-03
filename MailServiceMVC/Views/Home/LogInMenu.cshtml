@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "LogIn Menu";
+
+}
+<h1>@ViewData["Title"]</h1>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div>
+
+    <form method="post" asp-controller="User" asp-action="LogIn">
+        <label for="text">Email:</label><br>
+        <input type="text" id="Email" name="Email"><br>
+    
+        <label for="text">Password:</label><br>
+        <input type="password" id="Password" name="Password"><br>
+
+        <button type="submit">LogIn</button>
+    </form>
+        
+        
+</div>
+

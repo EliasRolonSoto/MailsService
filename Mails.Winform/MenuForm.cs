@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace Mails.Winform
 
         private void MenuForm_Load(object sender, EventArgs e)
         {
+            dgvMails.ReadOnly = true;
             cbItemsPerPage.SelectedIndex = 1;
             txtPage.Text = "1";
             dgvMails.RowHeadersVisible = false;
@@ -97,8 +99,11 @@ namespace Mails.Winform
 
             var result = JsonConvert.DeserializeObject<Response<Mail>>(jsonToDeserialize);
             dgvMails.DataSource = result.Items;
-        }
 
+            //var total = result.Total;
+            //lblResult.Text = $"{search.ResultMessage()}, from {total} mails";
+            
+        }
         private void cbItemsPerPage_SelectedIndexChanged(object sender, EventArgs e)
         {
 

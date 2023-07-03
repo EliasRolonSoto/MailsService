@@ -17,17 +17,28 @@ namespace Mails.Winform
         private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
         private readonly string _email;
+        private readonly string _to;
         public NewMailForm(string email)
         {
             InitializeComponent();
             _client = new HttpClient();
             _client.BaseAddress = _baseAddress;
             _email = email;
+            _to = string.Empty;
         }
+        public NewMailForm(string email, string to)
+        {
+            InitializeComponent();
+            _client = new HttpClient();
+            _client.BaseAddress = _baseAddress;
+            _email = email;
+            _to = to;
+        }
+        
 
         private void NewMailForm_Load(object sender, EventArgs e)
         {
-
+            txtTo.Text = _to;
         }
         private void SendMail()
         {

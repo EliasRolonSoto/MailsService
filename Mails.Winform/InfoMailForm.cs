@@ -21,18 +21,25 @@ namespace Mails.Winform
             _mail = mail;
             _email = email;
         }
+        
 
         private void InfoMailForm_Load(object sender, EventArgs e)
         {
+            txtFrom.Enabled = false;
+            txtTo.Enabled = false;
+            txtSubject.Enabled = false;
+            txtBody.Enabled = false;
             txtFrom.Text = _mail.SenderEmail.ToString();
             txtTo.Text = _mail.Receiver.ToString();
             txtSubject.Text = _mail.Subject.ToString();
             txtBody.Text = _mail.Body.ToString();
+
         }
 
         private void btnReply_Click(object sender, EventArgs e)
         {
-            NewMailForm reply = new NewMailForm(_email);
+            var to = txtFrom.Text;
+            NewMailForm reply = new NewMailForm(_email, to);
             reply.ShowDialog();
         }
 
