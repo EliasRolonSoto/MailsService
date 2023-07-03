@@ -12,14 +12,19 @@ namespace Mails.Data
         {
             _context = context;
         }
-        private List<Mail> GetInbox(string email)
+        public List<Mail> GetInbox(string email)
         {
             var result = from m in _context.Mails
                          where m.Receiver.Contains(email)
                          select m;
             return result.ToList();
         }
-        private List<Mail> GetOutbox(string email)
+        public Mail GetById(int id)
+        {
+            var mail = _context.Mails.FirstOrDefault(x => x.MailId == id);
+            return mail;
+        }
+        public List<Mail> GetOutbox(string email)
         {
             var result = from m in _context.Mails
                          where m.SenderEmail.Contains(email)

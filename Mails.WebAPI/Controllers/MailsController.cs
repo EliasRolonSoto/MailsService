@@ -27,7 +27,11 @@ namespace Mails.WebAPI.Controllers
         //{
         //    return _mailBusiness.GetOutbox(search);
         //}
-
+        [HttpGet("{id}")]
+        public Mail GetById(int id)
+        {
+            return _mailBusiness.GetById(id);
+        }
         [HttpPost]
         public void NewMail(Mail mail)
         {
@@ -43,6 +47,15 @@ namespace Mails.WebAPI.Controllers
         {
             return _mailBusiness.SearchOutbox(search, email);
         }
-
+        [HttpGet("all/inbox/{email}")]
+        public List<Mail> GetInbox(string email)
+        {
+            return _mailBusiness.GetInbox(email);
+        }
+        [HttpGet("all/outbox/{email}")]
+        public List<Mail> GetOutbox(string email)
+        {
+            return _mailBusiness.GetOutbox(email);
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace MailServiceMVC.Controllers
             
             if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
             {
+                HttpContext.Session.SetString("EmailSessionKey", email);
+                //TempData["EmailSessionKey"] = email;
                 return RedirectToAction("MailsMenu", "Mails");
                 //return View("MailsMenu", "MailService");
             }
@@ -65,7 +67,10 @@ namespace MailServiceMVC.Controllers
             if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
             {
                 TempData["SuccessMessage"] = "User created!";
+
+                
                 return RedirectToAction("LogInMenu", "Home");
+                
             }
             else
             {
