@@ -14,9 +14,9 @@ namespace Mails.WebAPI.Controllers
             _userBusiness = userBusiness;
         }
         [HttpPost]
-        public void Post(User user)
+        public bool Post(User user)
         {
-            _userBusiness.NewUser(user);
+            return _userBusiness.NewUser(user);
         }
         [HttpGet]
         public List<User> GetUsers()

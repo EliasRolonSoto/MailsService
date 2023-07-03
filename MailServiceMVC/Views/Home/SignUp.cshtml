@@ -4,22 +4,21 @@
 <h1>@ViewData["Title"]</h1>
 
 
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 <div>
-    <form>
-        <label for="text">User:</label><br>
-        <input type="text" id="User" name="User"><br>
-    </form>
-
-    <form>
+    <form method="post" asp-controller="User" asp-action="SignUp">
+        <label for="text">Name:</label><br>
+        <input type="text" id="Name" name="Name"><br>
         <label for="text">Email:</label><br>
-        <input type="text" id="Email" name="Emai"><br>
-    </form>
-
-    <form>
+        <input type="text" id="Email" name="Email"><br>
         <label for="text">Password:</label><br>
-        <input type="text" id="Password" name="Password"><br>
+        <input type="password" id="Password" name="Password"><br>
+        <button type="submit">SignUp</button>
     </form>
-
-
-    <button>SignUp</button>
+    
 </div>

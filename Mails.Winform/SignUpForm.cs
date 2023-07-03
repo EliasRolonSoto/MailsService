@@ -51,7 +51,7 @@ namespace Mails.Winform
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = _client.PostAsync($"{_client.BaseAddress}/users", content).Result;
 
-                if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
                 {
                     MessageBox.Show("User created!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     this.Close();

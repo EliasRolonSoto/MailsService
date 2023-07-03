@@ -6,7 +6,8 @@ namespace MailServiceMVC.Controllers
     {
         public IActionResult MailsMenu()
         {
-            return View("MailService", "MailsMenu");
+            return View("MailsMenu");
         }
+
     }
 }

@@ -17,9 +17,9 @@ namespace Mails.Business
         {
             _userRepository = userRepository;
         }
-        public void NewUser(User user)
+        public bool NewUser(User user)
         {
-            _userRepository.NewUser(user);
+            return _userRepository.NewUser(user);
         }
         public List<User> GetAll()
         {

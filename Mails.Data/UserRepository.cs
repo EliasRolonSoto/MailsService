@@ -16,14 +16,16 @@ namespace Mails.Data
         {
             _context = context;
         }
-        public void NewUser(User user)
+        public bool NewUser(User user)
         {
             if (IsEmailTaken(user.Email))
             {
                 Console.WriteLine($"El email: {user.Email} ya esta en uso");
+                return false;
             }
             _context.Users.Add(user);
             _context.SaveChanges();
+            return true;
         }
         public List<User> GetAll()
         {
