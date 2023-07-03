@@ -112,6 +112,7 @@
             btnClose.TabIndex = 15;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // lblFrom
             // 
@@ -139,6 +140,7 @@
             btnReply.TabIndex = 18;
             btnReply.Text = "Reply";
             btnReply.UseVisualStyleBackColor = true;
+            btnReply.Click += btnReply_Click;
             // 
             // InfoMailForm
             // 
@@ -158,6 +160,7 @@
             Controls.Add(txtTo);
             Name = "InfoMailForm";
             Text = "InfoMailForm";
+            Load += InfoMailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

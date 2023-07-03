@@ -72,6 +72,7 @@
             dgvMails.RowTemplate.Height = 25;
             dgvMails.Size = new Size(634, 412);
             dgvMails.TabIndex = 2;
+            dgvMails.CellDoubleClick += dgvMails_CellDoubleClick;
             // 
             // lblMenu
             // 

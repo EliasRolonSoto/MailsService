@@ -20,6 +20,7 @@ namespace Mails.Winform
         private readonly HttpClient _client;
         private readonly string _email;
         private string _textToSearch;
+        private Mail _mailInfo;
         enum EmailData
         {
             OutBox,
@@ -32,6 +33,7 @@ namespace Mails.Winform
             _client.BaseAddress = _baseAddress;
             _email = email;
             _textToSearch = "";
+            _mailInfo = new Mail();
         }
 
         private void MenuForm_Load(object sender, EventArgs e)
@@ -142,6 +144,21 @@ namespace Mails.Winform
         {
             _textToSearch = txtSearch.Text;
             DataGridLoadChecker(_textToSearch);
+        }
+
+        private void dgvMails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Verifica que se haya hecho doble clic en una fila, no en el encabezado
+            {
+                DataGridViewRow row = dgvMails.Rows[e.RowIndex];
+                _mailInfo.SenderEmail = row.Cells[1].Value.ToString();
+                _mailInfo.Subject = row.Cells[2].Value.ToString();
+                _mailInfo.Body = row.Cells[3].Value.ToString();
+                _mailInfo.Receiver = row.Cells[4].Value.ToString();
+
+                InfoMailForm infoMail = new InfoMailForm(_mailInfo, _email);
+                infoMail.ShowDialog();
+            }
         }
     }
 }
