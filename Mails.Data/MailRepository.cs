@@ -129,5 +129,31 @@ namespace Mails.Data
             return response;
 
         }
+        public List<Mail> SearchAllInbox(string textToSearch, string email)
+        {
+            var inBox = GetInbox(email);
+            var query = from m in inBox
+                        where m.Subject.Contains(textToSearch) ||
+                         m.SenderEmail.Contains(textToSearch) ||
+                          m.Body.Contains(textToSearch) ||
+                 m.Receiver.Contains(textToSearch)
+                        select m;
+            
+            return query.ToList();
+
+        }
+        public List<Mail> SearchAllOutbox(string textToSearch, string email)
+        {
+            var outBox = GetOutbox(email);
+            var query = from m in outBox
+                        where m.Subject.Contains(textToSearch) ||
+                         m.SenderEmail.Contains(textToSearch) ||
+                          m.Body.Contains(textToSearch) ||
+                 m.Receiver.Contains(textToSearch)
+                        select m;
+
+            return query.ToList();
+
+        }
     }
 }

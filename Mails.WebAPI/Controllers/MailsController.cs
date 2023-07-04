@@ -57,5 +57,17 @@ namespace Mails.WebAPI.Controllers
         {
             return _mailBusiness.GetOutbox(email);
         }
+        [HttpGet("all/inbox/{email}/{search}")]
+        public List<Mail> SearchAllInbox(string textToSearch, string email)
+        {
+            return _mailBusiness.SearchAllInbox(textToSearch, email);
+
+        }
+        [HttpGet("all/outbox/{email}/{search}")]
+        public List<Mail> SearchAllOutbox(string textToSearch, string email)
+        {
+            return _mailBusiness.SearchAllOutbox(textToSearch, email);
+
+        }
     }
 }

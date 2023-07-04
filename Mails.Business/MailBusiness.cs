@@ -49,5 +49,15 @@ namespace Mails.Business
         {
             return _mailRepository.GetOutbox(email);
         }
+        public List<Mail> SearchAllInbox(string textToSearch, string email)
+        {
+            return _mailRepository.SearchAllInbox(textToSearch, email);
+
+        }
+        public List<Mail> SearchAllOutbox(string textToSearch, string email)
+        {
+            return _mailRepository.SearchAllOutbox(textToSearch, email);
+
+        }
     }
 }
