@@ -44,6 +44,8 @@
     <p>
         <a asp-action="Create">Create New</a>
     </p>
+    <input type="text" id="searchInput">
+    <button onclick="search()">Buscar</button>
     <table class="table">
         <thead>
             <tr>
@@ -72,33 +74,52 @@
             @foreach (var item in Model)
             {
                 <tr>
+                <tr data-searchable="@item.Subject.ToLower() @item.Body.ToLower() @item.SenderEmail.ToLower() @item.Receiver.ToLower()">
+
+
                     <td>
-                        @Html.DisplayFor(modelItem => item.MailId)
+                            @Html.DisplayFor(modelItem => item.MailId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SenderEmail)
+                            @Html.DisplayFor(modelItem => item.SenderEmail)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Subject)
+                            @Html.DisplayFor(modelItem => item.Subject)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Body)
+                            @Html.DisplayFor(modelItem => item.Body)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Receiver)
+                            @Html.DisplayFor(modelItem => item.Receiver)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Date)
+                            @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
-                        
-                        @Html.ActionLink("Details", "Details", new { id=item.MailId  }) |
-                        
+
+                            @Html.ActionLink("Details", "Details", new { id=item.MailId  }) |
+
                     </td>
+                </tr>
                 </tr>
             }
         </tbody>
     </table>
+    <script>
+        function search() {
+            var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            var rows = document.getElementsByTagName("tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var searchableData = rows[i].getAttribute("data-searchable");
+                if (searchableData && searchableData.indexOf(searchTerm) !== -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 
