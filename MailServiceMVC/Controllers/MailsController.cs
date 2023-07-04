@@ -59,7 +59,8 @@ namespace MailServiceMVC.Controllers
                 TempData["MailSentMessage"] = "Mail sent!";
                 return View("MailsMenu");
             }
-            return View("MailsMenu"); // -- ??
+            TempData["MailSentMessage"] = "Error sending mail!";
+            return View("MailsMenu"); 
         }
         public IActionResult Details(int id)
         {
