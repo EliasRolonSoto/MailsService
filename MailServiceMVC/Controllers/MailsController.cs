@@ -24,6 +24,10 @@ namespace MailServiceMVC.Controllers
             HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/mails/all/inbox/" + email).Result;
             string data = response.Content.ReadAsStringAsync().Result;
             List<Mail> inbox = JsonConvert.DeserializeObject<List<Mail>>(data);
+            if (inbox.Count.Equals(0))
+            {
+                return View();
+            }
             return View(inbox);
         }
         public IActionResult Outbox()
@@ -32,6 +36,10 @@ namespace MailServiceMVC.Controllers
             HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/mails/all/outbox/" + email).Result;
             string data = response.Content.ReadAsStringAsync().Result;
             List<Mail> outbox = JsonConvert.DeserializeObject<List<Mail>>(data);
+            if (outbox.Count.Equals(0))
+            {
+                return View();
+            }
             return View(outbox);
         }
         public IActionResult Create()
@@ -41,13 +49,6 @@ namespace MailServiceMVC.Controllers
         public IActionResult NewMail(Mail mail)
         {
             string email = HttpContext.Session.GetString("EmailSessionKey")!;
-            //var mail = new Mail()
-            //{
-            //    Receiver = receiver,
-            //    Subject = subject,
-            //    Body = body,
-            //    SenderEmail = email
-            //};
             mail.SenderEmail = email;
             mail.Date = DateTime.Now;
             string data = JsonConvert.SerializeObject(mail);
@@ -55,7 +56,7 @@ namespace MailServiceMVC.Controllers
             HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/mails", content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return View("Outbox");
+                return View("MailsMenu");
             }
             return View("MailsMenu"); // -- ??
         }
