@@ -12,9 +12,14 @@ namespace Mails.Data
         {
             _context = context;
         }
+        private List<Mail> GetOrderedMails()
+        {
+            var mails = _context.Mails.OrderByDescending(e => e.Date);
+            return mails.ToList();
+        }
         public List<Mail> GetInbox(string email)
         {
-            var result = from m in _context.Mails
+            var result = from m in GetOrderedMails()
                          where m.Receiver.Contains(email)
                          select m;
             return result.ToList();
@@ -26,7 +31,7 @@ namespace Mails.Data
         }
         public List<Mail> GetOutbox(string email)
         {
-            var result = from m in _context.Mails
+            var result = from m in GetOrderedMails()
                          where m.SenderEmail.Contains(email)
                          select m;
             return result.ToList();
@@ -35,7 +40,7 @@ namespace Mails.Data
         {
             var skipRows = ((search.PageIndex - 1) * search.PageSize);
 
-            var query = from m in _context.Mails
+            var query = from m in GetOrderedMails()
                         where m.Receiver.Contains(search.TextToSearch)
                         select m;
 
@@ -56,7 +61,7 @@ namespace Mails.Data
         {
             var skipRows = ((search.PageIndex - 1) * search.PageSize);
 
-            var query = from m in _context.Mails
+            var query = from m in GetOrderedMails()
                         where m.SenderEmail.Contains(search.TextToSearch)
                         select m;
 

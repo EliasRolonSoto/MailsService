@@ -108,6 +108,7 @@ namespace Mails.Winform
         {
 
             _currentItemsPerPage = int.Parse(cbItemsPerPage.SelectedItem.ToString()!);
+            DataGridLoadChecker(_textToSearch);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
