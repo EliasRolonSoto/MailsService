@@ -43,6 +43,12 @@ namespace Mails.Winform
             cbItemsPerPage.SelectedIndex = 1;
             txtPage.Text = "1";
             dgvMails.RowHeadersVisible = false;
+            dgvMails.Columns.Remove("MailId");
+            foreach (DataGridViewColumn column in dgvMails.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            dgvMails.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void txtPage_TextChanged(object sender, EventArgs e)
