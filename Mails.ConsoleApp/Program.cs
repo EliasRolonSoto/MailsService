@@ -20,39 +20,44 @@ using (var client = new HttpClient())
     if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
     {
         Console.WriteLine("Logged in successfully!");
-        Console.WriteLine("---MENU---");
-        Console.WriteLine("1 - INBOX\n2 - OUTBOX\n3 - LOGOUT");
-        var key = int.Parse(Console.ReadLine());
-        switch (key)
+        int key;
+        do
         {
-            case 1:
-                response = client.GetAsync("https://localhost:7007/api/mails/all/inbox/"+email).Result;
-                data = response.Content.ReadAsStringAsync().Result;
-                var resultList = JsonConvert.DeserializeObject<List<Mail>>(data);
-                Console.WriteLine("---INBOX---");
-                foreach (var item in resultList)
-                {
-                    Console.WriteLine("---Mail---");
-                    Console.WriteLine(item);
-                    Console.WriteLine("----------");
-                }
-                break;
-            case 2:
-                response = client.GetAsync("https://localhost:7007/api/mails/all/outbox/" + email).Result;
-                data = response.Content.ReadAsStringAsync().Result;
-                resultList = JsonConvert.DeserializeObject<List<Mail>>(data);
-                Console.WriteLine("---OUTBOX---");
-                foreach (var item in resultList)
-                {
-                    Console.WriteLine("---Mail---");
-                    Console.WriteLine(item);
-                    Console.WriteLine("----------");
-                }
-                break;
-            case 3:
-                break;
-                //default:
-        }
+            Console.WriteLine("---MENU---");
+            Console.WriteLine("1 - INBOX\n2 - OUTBOX\n0 - LOGOUT");
+            key = int.Parse(Console.ReadLine());
+            switch (key)
+            {
+                case 1:
+                    response = client.GetAsync("https://localhost:7007/api/mails/all/inbox/" + email).Result;
+                    data = response.Content.ReadAsStringAsync().Result;
+                    var resultList = JsonConvert.DeserializeObject<List<Mail>>(data);
+                    Console.WriteLine("---INBOX---");
+                    foreach (var item in resultList)
+                    {
+                        Console.WriteLine("---Mail---");
+                        Console.WriteLine(item);
+                        Console.WriteLine("----------");
+                    }
+                    break;
+                case 2:
+                    response = client.GetAsync("https://localhost:7007/api/mails/all/outbox/" + email).Result;
+                    data = response.Content.ReadAsStringAsync().Result;
+                    resultList = JsonConvert.DeserializeObject<List<Mail>>(data);
+                    Console.WriteLine("---OUTBOX---");
+                    foreach (var item in resultList)
+                    {
+                        Console.WriteLine("---Mail---");
+                        Console.WriteLine(item);
+                        Console.WriteLine("----------");
+                    }
+                    break;
+                case 0:
+                    break;
+            }
+        }while (key != 0);
+        
+        
     }
     else
     {
