@@ -61,13 +61,11 @@ namespace Mails.WebAPI.Controllers
         public List<Mail> SearchAllInbox(string textToSearch, string email)
         {
             return _mailBusiness.SearchAllInbox(textToSearch, email);
-
         }
         [HttpGet("all/outbox/{email}/{search}")]
         public List<Mail> SearchAllOutbox(string textToSearch, string email)
         {
             return _mailBusiness.SearchAllOutbox(textToSearch, email);
-
         }
     }
 }
