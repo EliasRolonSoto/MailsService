@@ -34,10 +34,30 @@ namespace MailServiceMVC.Controllers
             List<Mail> outbox = JsonConvert.DeserializeObject<List<Mail>>(data);
             return View(outbox);
         }
-        public IActionResult NewEmail()
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult NewMail(Mail mail)
         {
             string email = HttpContext.Session.GetString("EmailSessionKey")!;
-            return View("MailsMenu");
+            //var mail = new Mail()
+            //{
+            //    Receiver = receiver,
+            //    Subject = subject,
+            //    Body = body,
+            //    SenderEmail = email
+            //};
+            mail.SenderEmail = email;
+            mail.Date = DateTime.Now;
+            string data = JsonConvert.SerializeObject(mail);
+            StringContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/mails", content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return View("Outbox");
+            }
+            return View("MailsMenu"); // -- ??
         }
         public IActionResult Details(int id)
         {
