@@ -14,11 +14,11 @@
 <div>
     <form method="post" asp-controller="User" asp-action="SignUp">
         <label for="text">Name:</label><br>
-        <input required type="text" id="Name" name="Name" ><br>
+        <input type="text" id="Name" name="Name" required><br>
         <label for="text">Email:</label><br>
-        <input required type="text" id="Email" name="Email" readonly><br>
+        <input type="text" id="Email" name="Email" required><br>
         <label for="text">Password:</label><br>
-        <input required type="password" id="Password" name="Password"><br>
+        <input type="password" id="Password" name="Password" required><br>
         <button type="submit">SignUp</button>
     </form>
     

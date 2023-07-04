@@ -1,4 +1,5 @@
-﻿using Mails.Entities;
+﻿using Mails.ConsoleApp;
+using Mails.Entities;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
@@ -9,8 +10,8 @@ var password = Console.ReadLine();
 
 var loginRequest = new LogInRequest()
 {
-	Email = email,
-	PasswordHash = password
+    Email = email,
+    PasswordHash = password
 };
 using (var client = new HttpClient())
 {
@@ -55,9 +56,9 @@ using (var client = new HttpClient())
                 case 0:
                     break;
             }
-        }while (key != 0);
-        
-        
+        } while (key != 0);
+
+
     }
     else
     {
