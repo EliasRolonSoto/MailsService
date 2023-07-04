@@ -56,6 +56,7 @@ namespace MailServiceMVC.Controllers
             HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/mails", content).Result;
             if (response.IsSuccessStatusCode)
             {
+                TempData["MailSentMessage"] = "Mail sent!";
                 return View("MailsMenu");
             }
             return View("MailsMenu"); // -- ??
