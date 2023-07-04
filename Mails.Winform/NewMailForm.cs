@@ -57,12 +57,12 @@ namespace Mails.Winform
                 HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/mails", content).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Mail successfully sent!");
+                    MessageBox.Show("Mail successfully sent!","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Couldn't send mail");
+                    MessageBox.Show("Couldn't send mail","Alert",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
             }
             

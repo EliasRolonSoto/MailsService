@@ -53,7 +53,7 @@ namespace Mails.Winform
 
                 if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
                 {
-                    MessageBox.Show("User created!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("User created!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else
