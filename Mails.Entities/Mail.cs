@@ -15,5 +15,9 @@ namespace Mails.Entities
         public string Receiver { get; set; }
         public DateTime Date { get; set; }
 
+        public override string ToString()
+        {
+            return $"Sender: {SenderEmail}\nReceiver: {Receiver} \nSubject: {Subject} \nBody: {Body}";
+        }
     }
 }
