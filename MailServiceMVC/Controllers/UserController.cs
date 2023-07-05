@@ -10,6 +10,7 @@ namespace MailServiceMVC.Controllers
 {
     public class UserController : Controller
     {
+        //Variables privadas para ruteo
         private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
 
@@ -18,11 +19,12 @@ namespace MailServiceMVC.Controllers
             _client = new HttpClient();
             _client.BaseAddress = _baseAddress;
         }
+        //Controlador para ir al inicio
         public IActionResult Index()
         {
             return View();
         }
-
+        //Controlador para Loggeo
         public IActionResult LogIn(string email, string password)
         {
             LogInRequest logInRequest = new LogInRequest()
@@ -35,7 +37,8 @@ namespace MailServiceMVC.Controllers
             StringContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/users/login", content).Result;
-            
+
+            //Chequea contra DB si el usuario y contraseña son correctos y existen en DB
             if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
             {
                 HttpContext.Session.SetString("EmailSessionKey", email);
@@ -50,6 +53,7 @@ namespace MailServiceMVC.Controllers
             }
             
         }
+        //Controlador de Registro
         public IActionResult SignUp(string name , string email, string password)
         {
             var passwordHasher = new PasswordHasher<string>();
@@ -64,6 +68,7 @@ namespace MailServiceMVC.Controllers
 
             HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "/users", content).Result;
 
+            //Chequea que el usuario que el usario no este en uso y de estar disponible lo crea
             if (response.IsSuccessStatusCode && response.Content.ReadAsStringAsync().Result.Equals("true"))
             {
                 TempData["SuccessMessage"] = "User created!";

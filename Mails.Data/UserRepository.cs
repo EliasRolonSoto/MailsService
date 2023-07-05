@@ -16,6 +16,7 @@ namespace Mails.Data
         {
             _context = context;
         }
+        //registro de nuevo usuario, chequea disponibilidad de cuenta y si es positivo almacena en DB
         public bool NewUser(User user)
         {
             if (IsEmailTaken(user.Email))
@@ -27,18 +28,22 @@ namespace Mails.Data
             _context.SaveChanges();
             return true;
         }
+        //trae la lista de usuarios
         public List<User> GetAll()
         {
             return _context.Users.ToList();
         }
+        //trae un usuario filtrando por Email
         private User? GetUserByEmail(string email)
         {
             return _context.Users.FirstOrDefault(u => u.Email.ToLower().Equals(email.ToLower()));
         }
+        //chequeo bool de si el correo esta o no uso
         private bool IsEmailTaken(string email)
         {
             return _context.Users.Any(u => u.Email == email);
         }
+        //Busca coincidencia de usuario-contraseña en la DB
         public bool LogIn(LogInRequest loginRequest)
         {
             var passwordHasher = new PasswordHasher<User>();

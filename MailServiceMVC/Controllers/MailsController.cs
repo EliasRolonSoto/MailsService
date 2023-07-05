@@ -6,6 +6,7 @@ namespace MailServiceMVC.Controllers
 {
     public class MailsController : Controller
     {
+        //Variables privadas para ruteo
         private readonly Uri _baseAddress = new Uri("https://localhost:7007/api");
         private readonly HttpClient _client;
 
@@ -14,10 +15,12 @@ namespace MailServiceMVC.Controllers
             _client = new HttpClient();
             _client.BaseAddress = _baseAddress;
         }
+        //Vista del mail Menu
         public IActionResult MailsMenu()
         {
             return View("MailsMenu");
         }
+        //Vista Del Inbox
         public IActionResult Inbox()
         {
             string email =  HttpContext.Session.GetString("EmailSessionKey");
@@ -30,6 +33,7 @@ namespace MailServiceMVC.Controllers
             }
             return View(inbox);
         }
+        //Vista del OutBox
         public IActionResult Outbox()
         {
             string email = HttpContext.Session.GetString("EmailSessionKey")!;
@@ -42,10 +46,12 @@ namespace MailServiceMVC.Controllers
             }
             return View(outbox);
         }
+        //Vista del NewMail
         public IActionResult Create()
         {
             return View();
         }
+        //controlador para crear un nuevo mail con confirmacion y guardado en DB
         public IActionResult NewMail(Mail mail)
         {
             string email = HttpContext.Session.GetString("EmailSessionKey")!;
@@ -62,6 +68,7 @@ namespace MailServiceMVC.Controllers
             TempData["MailSentMessage"] = "Error sending mail!";
             return View("MailsMenu"); 
         }
+        //vista de detalles del mail
         public IActionResult Details(int id)
         {
             HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/mails/" + id).Result;
