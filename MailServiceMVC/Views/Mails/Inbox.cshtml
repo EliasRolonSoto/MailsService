@@ -50,9 +50,6 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MailId)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.SenderEmail)
                 </th>
                 <th>
@@ -77,9 +74,7 @@
                 <tr data-searchable="@item.Subject.ToLower() @item.Body.ToLower() @item.SenderEmail.ToLower() @item.Receiver.ToLower()">
                     
                 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MailId)
-                    </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.SenderEmail)
                     </td>
